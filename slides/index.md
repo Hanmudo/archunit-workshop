@@ -89,7 +89,7 @@ Dockerfile phases:
 
 > Task: Add ArchUnit to the project 
 
-[Go to project setup](/projectsetup.md)
+[Go to project setup](/projectsetup/index.md)
 
 Note:
 Use the Docker environment for the Dockerfile(s) in the projects
