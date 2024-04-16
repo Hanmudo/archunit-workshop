@@ -1,0 +1,8 @@
+{
+  "css": [
+    "css/custom.css"
+  ],
+  "plugins": [
+    "plugin/notes/notes.js"
+  ]
+}

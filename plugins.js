@@ -1,0 +1,3 @@
+options.plugins.push(
+    RevealNotes,
+);

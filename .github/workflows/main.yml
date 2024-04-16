@@ -1,0 +1,51 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: webpronl/reveal-md:latest
+      options:
+        --entrypoint=''
+      volumes:
+        - ${{github.workspace}}:${{github.workspace}}
+        - /tmp/artifacts:/tmp/artifacts
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build
+        run: /app/bin/reveal-md.js ${{github.workspace}}/slides --static /tmp/artifacts/presentation/
+
+      - name: Install upload-pages-artifact dependency
+        run: apk add tar
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          path: /tmp/artifacts/presentation/
+
+  release-and-deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: https://hanmudo.github.io/archunit-workshop/
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
