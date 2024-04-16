@@ -79,7 +79,7 @@ Let's UnitTest our architecture!
 
 ---
 
-## Basic project setup
+## Part 1: Basic project setup
 
 > First start with checking our example project
 
@@ -89,14 +89,14 @@ Dockerfile phases:
 
 > Task: Add ArchUnit to the project 
 
-[Go to project setup](/projectsetup/index.md)
+[Go to project setup](/slides/projectsetup/index.md)
 
 Note:
 Use the Docker environment for the Dockerfile(s) in the projects
 
 ---
 
-Basic rules (first tell something, then let people do)
+# Part 2: Basic rules (first tell something, then let people do)
 
 Clone the following Git repository: ""
 Implement the following basic rules:
@@ -107,7 +107,7 @@ Note:
 Check for the right usage of packages
 ---
 
-Intermediate rules
+# Part 3: Intermediate rules
 
 - Check on patterns and anti-patterns
 
@@ -116,7 +116,7 @@ The intermediate rules are for checking on patterns and anti-patterns
 
 ---
 
-Integrate in build process
+# Part 4: Integrate in build process
 
 * Maven build and test
 
@@ -124,7 +124,7 @@ Note: Old concurrency the thread was a wrapper around an OS thread. The loom var
 
 ---
 
-Advanced rules
+# Part 5: Advanced rules
 
 - Implement custom rules based on the ArchRule API
 - Implement check on design patterns or guidelines
@@ -132,12 +132,12 @@ Advanced rules
 
 ---
 
-Continuous Integration
+# Part 6: Continuous Integration
 - Freeze for performance (Heap memory)
 - Freeze default
 ---
 
-Best practices + Community
+# Best practices + Community
 
 - Create a artifact of the architectural tests for easy maintenance
 - Get connected in the wide community of ArchUnit/PlantUML
@@ -145,5 +145,5 @@ Best practices + Community
 
 ---
 
-The End.
-Questions?
+# The End.
+## Questions?

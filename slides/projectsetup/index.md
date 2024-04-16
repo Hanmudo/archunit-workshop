@@ -4,14 +4,14 @@ revealOptions:
   transition: 'none'
 ---
 
-# Project Setup
+## Part 1: Project Setup
 
 - Clone GitLab repository <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
 - Check if IDE is correctly configured
 - Run application with docker through maven
 - \> Or build and run with docker!
 
-<img src="/img/ArchUnit-Logo.png">
+<img src="../img/ArchUnit-Logo.png">
 
 ---
 
