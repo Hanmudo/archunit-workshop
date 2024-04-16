@@ -6,19 +6,19 @@ revealOptions:
 
 # Project Setup
 
-- Clone GitLab repository [Demo project]("https://gitlab.com/RickyvanRijn/archunit-spring")
+- Clone GitLab repository <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
 - Check if IDE is correctly configured
 - Run application with docker through maven
 - \> Or build and run with docker!
 
-<img src="../img/ArchUnit-Logo.png">
+<img src="/img/ArchUnit-Logo.png">
 
 ---
 
 # Project context 
 The sample project we're using for the workshop is based on a Spring Boot API.
 
-The API receives a call to get a plane ticket or train ticket.
+The API receives a call to get a ticket object concerning a plane or train.
 
 ---
 
@@ -57,14 +57,20 @@ dependencies {
 Create and run your first test.
 
 ```java
-    @Test
-    public void my_first_architecture_rule() {
-        JavaClasses importedClasses = new ClassFileImporter().importPackages("com.example.archunitspring");
-    
-        ArchRule rule = classes().that().haveNameMatching(".*Model"); // see next section
-    
-        rule.check(importedClasses);
-    }
+@Test
+public void my_first_architecture_rule() {
+    JavaClasses importedClasses = new ClassFileImporter()
+            .importPackages(
+              "com.example.archunitspring.application.services"
+            );
+
+    ArchRule rule = classes()
+            .that().resideInAPackage("..services..")
+            .and().areAnnotatedWith(Service.class)
+            .should().haveSimpleNameEndingWith("ServiceImpl");
+
+    rule.check(importedClasses);
+}
 ```
 
 ---

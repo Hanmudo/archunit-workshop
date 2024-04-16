@@ -9,6 +9,7 @@
 
 .reveal pre code {
     max-height: 450px;
+    width: fit-content;
 }
 
 body {
