@@ -8,14 +8,13 @@ revealOptions:
 Based on dependencies of
 
 - Plain Java
-- Junit4
-- Junit5
+- Junit4 or Junit5
 
 ---
 
 ## What is a basic rule
 
-A basic rule is based on low complexity or logical behaviour
+A basic architecture test is based on low complexity or logical behaviour
 
 ---
 
@@ -163,3 +162,17 @@ public void classes_should_not_use_java_util_logging() {
 
 ---
 
+## Tasks
+
+- Switch to the basicrules branch
+- Implement 3 test cases with ClassFileImporter
+- Implement 3 test cases with AnalyzeClasses and ArchTest annotation.
+
+---
+
+### Test cases
+
+1. Check the naming convention of the services match in package services and end with ServiceImpl 
+2. Check if the class of the plannerService has dependencies in the repository layer 
+3. Check if the models doesn't have dependencies towards service package or repository package 
+4. Check if no generic Exceptions are thrown
