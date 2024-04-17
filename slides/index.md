@@ -174,6 +174,14 @@ Note:
 
 ---
 
+### Slices
+
+> Slices are subsets of classes that can be tested against another slice
+>
+> SliceRule and SliceRuleDefinition objects are used
+
+---
+
 ## Part 1: Basic project setup
 
 > First start with checking our example project

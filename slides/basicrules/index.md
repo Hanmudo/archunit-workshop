@@ -116,7 +116,7 @@ public class ArchUnitJunit5Test {
 
 ```java 
 @Test
-public void DAOs_must_reside_in_a_dao_package() {
+public void dao_must_reside_in_dao_package() {
     classes().that().haveNameMatching(".*Dao").should().resideInAPackage("..dao..")
         .as("DAOs should reside in a package '..dao..'")
         .check(classes);
@@ -128,7 +128,7 @@ public void DAOs_must_reside_in_a_dao_package() {
 
 ```java
 @Test
-public void all_public_methods_in_the_controller_layer_should_return_API_response_wrappers() {
+public void the_controller_layer_should_return_API_response_wrappers() {
     methods()
             .that().areDeclaredInClassesThat().resideInAPackage("..anticorruption..")
             .and().arePublic()
