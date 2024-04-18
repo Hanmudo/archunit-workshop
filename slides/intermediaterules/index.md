@@ -1,10 +1,10 @@
 ---
-title: "Workshop: implement ArchUnit in your Java Spring Boot project" 
+title: "Workshop: implement ArchUnit in your Java Spring Boot project"
 revealOptions:
   transition: 'none'
 ---
 
-# Part 2: Implement Basic Rules
+# Part 3: Implement Intermediate Rules
 Based on dependencies of
 
 - Plain Java
@@ -13,153 +13,91 @@ Based on dependencies of
 
 ---
 
-## What is a basic rule
+## What is an intermediate rule
 
-A basic rule is based on low complexity or logical behaviour
-
----
-
-Plain java was used for the project setup, again:
-
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
-
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit:1.3.0'
-}
-```
----
-Junit4 dependency
-
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit-junit4</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
-
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit-junit4:1.3.0'
-}
-```
----
-
-Junit4 ArchUnit example
-
-```java
-@RunWith(ArchUnitRunner.class)
-@AnalyzeClasses(packages = "com.example.archunitspring.application.services")
-public class ArchUnitJunit4Test {
-
-    @ArchTest
-    public static ArchRule services_should_be_prefixed =
-            classes()
-                    .that().resideInAPackage("..services..")
-                    .and().areAnnotatedWith(Service.class)
-                    .should().haveSimpleNameStartingWith("Service");
-}
-```
+An intermediate rule is based on a pattern or antipattern
 
 ---
-Junit5 dependency
 
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit-junit5</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
+### Intermediate rule 1: A common antipattern in microservice architectures
 
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit-junit5:1.3.0'
-}
-```
----
-
-Junit5 ArchUnit example
-
-```java
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-
-@AnalyzeClasses(packages = "com.example.archunitspring.application.services")
-public class ArchUnitJunit5Test {
-
-    @ArchTest
-    static ArchRule services_should_be_prefixed =
-            classes()
-                    .that().resideInAPackage("..services..")
-                    .and().areAnnotatedWith(Service.class)
-                    .should().haveSimpleNameStartingWith("Service");
-}
-```
----
-
-## Basic rule 1: DAO Classes must reside in a package
+A common pitfall with microservice architecture is the wrong usage of objects from domain libraries.
+E.g. The usage of Train domain objects in the Plane service
 
 ```java 
 @Test
-public void DAOs_must_reside_in_a_dao_package() {
-    classes().that().haveNameMatching(".*Dao").should().resideInAPackage("..dao..")
-        .as("DAOs should reside in a package '..dao..'")
-        .check(classes);
+public void domainClassesShouldNotDependOnEachOther() {
+    SlicesRuleDefinition.slices()
+            .matching("example.(*service).domain")
+            .should().notDependOnEachOther()
+            .check(classes);
 }
 ```
 ---
 
-## Basic rule 2: No directly coupled code to return type  of the module
+### Intermediate rule 2: Onion Architecture
+
+<img src="../img/onionarchitecture.png" width="200"/>
+
+Onion architecture is a software design pattern that emphasizes the separation of concerns in building applications
+
+---
+
+### Intermediate rule 2: Onion Architecture
+
+> Define the packages which resemble the domainModels, domainServices, etc. 
 
 ```java
 @Test
-public void all_public_methods_in_the_controller_layer_should_return_API_response_wrappers() {
-    methods()
-            .that().areDeclaredInClassesThat().resideInAPackage("..anticorruption..")
-            .and().arePublic()
-            .should().haveRawReturnType(WrappedResult.class)
-            .because("we do not want to couple the client code directly to the return types of the encapsulated module")
+public void onion_architecture_is_enforced() {
+    onionArchitecture()
+            .domainModels("..domain.model..")
+            .domainServices("..domain.service..")
+            .applicationServices("..application..")
+            .adapter("cli", "..adapter.cli..")
+            .adapter("persistence", "..adapter.persistence..")
+            .adapter("rest", "..adapter.rest..")
             .check(classes);
 }
 ```
 
 ---
 
-## Basic rule 3: Classes shouldn't throw generic exceptions
+### Intermediate rule 3: Layered architecture
+
+Use to configure layers from access to other layers.
+
+Exceptions can be made if necessary.
 
 ```java
 @Test
-public void classes_should_not_throw_generic_exceptions() {
-    NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS.check(classes);
+public void layer_dependencies_are_enforced() {
+    layeredArchitecture().consideringAllDependencies()
+
+            .layer("Controllers").definedBy("com.tngtech.archunit.example.layers.controller..")
+            .layer("Services").definedBy("com.tngtech.archunit.example.layers.service..")
+            .layer("Persistence").definedBy("com.tngtech.archunit.example.layers.persistence..")
+
+            .whereLayer("Controllers").mayNotBeAccessedByAnyLayer()
+            .whereLayer("Services").mayOnlyBeAccessedByLayers("Controllers")
+            .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Services")
+
+            .check(classes);
 }
 ```
+---
+### Intermediate rule 3: Layered architecture
+
+Visual representation of the layered architecture or n-tier architecture.
+
+<img src="../img/layered_common.svg" width="200"/>
 
 ---
 
-## Basic Rule 4: Don't permit the use of java util logging
+## implement testcases
 
-```java
- @Test
-public void classes_should_not_use_java_util_logging() {
-    NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING.check(classes);
-}
-```
+- Implement microservices antipattern by implementing service A within Service B and vice versa
+- Implement Onion architecture archtest by refactoring 
+- Implement Layered architecture archtest by refactoring
 
----
 

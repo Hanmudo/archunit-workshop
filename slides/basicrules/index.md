@@ -17,6 +17,13 @@ Based on dependencies of
 A basic architecture test is based on low complexity or logical behaviour
 
 ---
+## Writing tests
+
+> ArchTests live among the Unit tests in the test folder.
+> 
+> Recommended is the use of a seperate folder or artifact which stores the arch tests
+
+---
 
 Plain java was used for the project setup, again:
 
@@ -164,7 +171,7 @@ public void classes_should_not_use_java_util_logging() {
 
 ## Tasks
 
-- Switch to the basicrules branch
+- Switch to the 'basicrules' branch
 - Implement 3 test cases with ClassFileImporter
 - Implement 3 test cases with AnalyzeClasses and ArchTest annotation.
 
@@ -173,6 +180,6 @@ public void classes_should_not_use_java_util_logging() {
 ### Test cases
 
 1. Check the naming convention of the services match in package services and end with ServiceImpl 
-2. Check if the class of the plannerService has dependencies in the repository layer 
+2. Check if the class of the scheduleEndpoint has dependencies in the services layer 
 3. Check if the models doesn't have dependencies towards service package or repository package 
 4. Check if no generic Exceptions are thrown

@@ -20,3 +20,8 @@ To enable live reload in the container, port 35729 should be mapped as well:
 ```bash
 docker run --rm -p 1948:1948 -p 35729:35729 -v $(pwd)/slides:/slides webpronl/reveal-md:latest /slides --watch
 ```
+
+To run the reveal instance with the custom script and css:
+```bash
+docker run --rm -p 1948:1948 -p 35729:35729 -v $(pwd)/:/slides webpronl/reveal-md:latest /slides --watch
+```

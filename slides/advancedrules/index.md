@@ -4,162 +4,74 @@ revealOptions:
   transition: 'none'
 ---
 
-# Part 2: Implement Basic Rules
-Based on dependencies of
+# Part 5: Implement Advanced Rules
 
-- Plain Java
-- Junit4
-- Junit5
+- Create custom rule
+- Run an Archtest with a PlantUML diagram
 
 ---
 
-## What is a basic rule
+## What is an advanced rule
 
-A basic rule is based on low complexity or logical behaviour
-
----
-
-Plain java was used for the project setup, again:
-
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
-
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit:1.3.0'
-}
-```
----
-Junit4 dependency
-
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit-junit4</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
-
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit-junit4:1.3.0'
-}
-```
----
-
-Junit4 ArchUnit example
-
-```java
-@RunWith(ArchUnitRunner.class)
-@AnalyzeClasses(packages = "com.example.archunitspring.application.services")
-public class ArchUnitJunit4Test {
-
-    @ArchTest
-    public static ArchRule services_should_be_prefixed =
-            classes()
-                    .that().resideInAPackage("..services..")
-                    .and().areAnnotatedWith(Service.class)
-                    .should().haveSimpleNameStartingWith("Service");
-}
-```
+An advanced rule is based on a customization or external party
 
 ---
-Junit5 dependency
 
-Maven
-```xml
-<dependency>
-    <groupId>com.tngtech.archunit</groupId>
-    <artifactId>archunit-junit5</artifactId>
-    <version>1.3.0</version>
-    <scope>test</scope>
-</dependency>
-```
+### Advanced rule 1: A custom ArchRuleDefinition
 
-Gradle
-```groovy
-dependencies {
-    testImplementation 'com.tngtech.archunit:archunit-junit5:1.3.0'
-}
-```
----
+A common pitfall with microservice architecture is the wrong usage of objects from domain libraries.
 
-Junit5 ArchUnit example
-
-```java
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-
-@AnalyzeClasses(packages = "com.example.archunitspring.application.services")
-public class ArchUnitJunit5Test {
-
-    @ArchTest
-    static ArchRule services_should_be_prefixed =
-            classes()
-                    .that().resideInAPackage("..services..")
-                    .and().areAnnotatedWith(Service.class)
-                    .should().haveSimpleNameStartingWith("Service");
-}
-```
----
-
-## Basic rule 1: DAO Classes must reside in a package
+E.g. The usage of Train domain objects in the Plane domain object(s)
 
 ```java 
 @Test
-public void DAOs_must_reside_in_a_dao_package() {
-    classes().that().haveNameMatching(".*Dao").should().resideInAPackage("..dao..")
-        .as("DAOs should reside in a package '..dao..'")
-        .check(classes);
-}
-```
----
-
-## Basic rule 2: No directly coupled code to return type  of the module
-
-```java
-@Test
-public void all_public_methods_in_the_controller_layer_should_return_API_response_wrappers() {
-    methods()
-            .that().areDeclaredInClassesThat().resideInAPackage("..anticorruption..")
-            .and().arePublic()
-            .should().haveRawReturnType(WrappedResult.class)
-            .because("we do not want to couple the client code directly to the return types of the encapsulated module")
+public void domainClassesShouldNotDependOnEachOther() {
+    SlicesRuleDefinition.slices()
+            .matching("example.(*service).domain")
+            .should().notDependOnEachOther()
             .check(classes);
 }
 ```
-
 ---
 
-## Basic rule 3: Classes shouldn't throw generic exceptions
+### Advanced rule 2: Use a PlantUML diagram
+
+A PlantUML diagram can be used for an ArchTest.
+
+Make sure you exclude the java jdk packages to validate.
 
 ```java
+private final JavaClasses classes = new ClassFileImporter().importPackages("com.tngtech.archunit.example.shopping");
+private final URL plantUmlDiagram = PlantUmlArchitectureTest.class.getResource("shopping_example.puml");
+
 @Test
-public void classes_should_not_throw_generic_exceptions() {
-    NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS.check(classes);
+public void classes_should_adhere_to_shopping_example_considering_only_dependencies_in_diagram() {
+    classes().should(adhereToPlantUmlDiagram(plantUmlDiagram, consideringOnlyDependenciesInDiagram()))
+            .check(classes);
 }
 ```
+---
+### Advanced rule 3: Create a PlantUML diagram
+
+>- Download PlantUML and start it or use docker
+>   - https://github.com/plantuml/plantuml-server
+>   - `docker run -d -p 8080:8080 plantuml/plantuml-server:jetty`
+> More on the next slide >>
 
 ---
+### Install PlantUML
 
-## Basic Rule 4: Don't permit the use of java util logging
-
-```java
- @Test
-public void classes_should_not_use_java_util_logging() {
-    NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING.check(classes);
-}
-```
-
+> - https://plantuml.com/download
+    >   - Intellij Plugin: https://plugins.jetbrains.com/plugin/7017-plantuml-integration
+>   - Eclipse Plugin: https://plantuml.com/eclipse
+>   - Live Editor > https://github.com/plantuml/plantuml-server
+>
+> Dependency of PlantUML: https://graphviz.org/download/
+> 
+> When a error occurs of the **dot** application, you'll need to (re-)install graphviz
 ---
+## Implement testcases
 
+- Create a custom archrule 
+- Implement an ArchTest with the use of the given PlantUML diagram
+- Implement an ArchTest with a custom created PlantUML
