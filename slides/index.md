@@ -298,6 +298,11 @@ This shows something like:
 @enduml
 ```
 ---
+### PlantUML Component Diagram visual
+
+[<img src="img/basic_plantuml.png"/>](image.png)
+
+---
 ### Basics of PlantUML component diagram
 
 > - Through the adhereToPlantUmlDiagram(..) method there would be a violation reported when target is accessing the source 
