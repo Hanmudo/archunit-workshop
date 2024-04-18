@@ -6,7 +6,9 @@ revealOptions:
 
 ## Part 1: Project Setup
 
-- Clone GitLab repository <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
+- Clone GitLab repository 
+  - Example Project: <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
+  - Workshop Presentation: <a href="https://github.com/Hanmudo/archunit-workshop" target="_blank">https://github.com/Hanmudo/archunit-workshop</a>
 - Check if IDE is correctly configured
 - Run application with docker through maven
 - \> Or build and run with docker!
