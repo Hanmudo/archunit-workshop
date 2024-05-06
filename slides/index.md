@@ -570,6 +570,9 @@ planeticketservice -> ticketservice : implements
 >- The PlantUML file can be used to represent the architecture
 >- The PlantUML file can be maintained by Solution Architects 
 ---
+### The End
+> or is it? 
+---
 ### There's a bit more if there's time...
 >- FreezingArchRule(s)
 >- Violation Store
@@ -577,7 +580,7 @@ planeticketservice -> ticketservice : implements
 ---
 ### FreezingArchRule
 
-> Similar to @Disabled for unit tests but different
+> Similar to @Disabled for unit tests
 > 
 > Returns a EvaluationResult when test fails
 > 
@@ -600,12 +603,14 @@ public void no_classes_should_depend_on_service() {
 }
 ```
 ---
-
-### FreezingArchRule part 2
+### Create Freezing ArchRule
+>- Adjust a test and 'freeze' it
+---
+### Configure the Violation Store
 
 > The Violation Store name can be set through a property
 > 
-> The default filename is stored.rules
+> The default filename configured is stored.rules
 > 
 > The default path can be set in the archunit.properties file in the test/resources folder
 > 
@@ -613,7 +618,7 @@ public void no_classes_should_depend_on_service() {
 
 ---
 
-### FreezingArchRule Violation Store
+### Violation Store Example
 
 ```text
 #
@@ -622,7 +627,7 @@ no\ classes\ should\ depend\ on\ classes\ that\ reside\ in\ a\ package\ '..servi
 no\ classes\ should\ depend\ on\ classes\ that\ are\ assignable\ to\ javax.persistence.EntityManager=e77ec262-4d5c-4a7b-b41f-362a71e5a1d8
 ```
 ---
-### FreezingArchRule Violation
+### FreezingArchRule Violation Example
 
 ```text
 Class <com.tngtech.archunit.example.layers.service.ServiceViolatingDaoRules$MyEntityManager> implements interface <javax.persistence.EntityManager> in (ServiceViolatingDaoRules.java:0)
@@ -637,7 +642,7 @@ Method <com.tngtech.archunit.example.layers.persistence.second.dao.jpa.OtherJpa.
 ```
 ---
 
-### Caching
+### 'Caching'
 
 > ClassFileImporter analyzes all imported classes
 > 
@@ -645,13 +650,6 @@ Method <com.tngtech.archunit.example.layers.persistence.second.dao.jpa.OtherJpa.
 > 
 > Use @AnalyzeClasses annotation with @ArchTest annotation for reuse of imported classes
 
----
-### AnalyzeClasses example
-
-```java
-@AnalyzeClasses(packages = "com.example.archunitspring")
-public class ArchSlicesTest { ... }
-```
 ---
 
 ### Slices
@@ -672,89 +670,13 @@ public class ArchSlicesTest { ... }
 
 ---
 
-### PlantUML component diagram
-
-> The ArchUnit library can use a puml file as source for ArchUnit tests
->
-> Architecture patterns are easily tested this way
->
-> Don't forget to ignore the java JDK dependencies
-
----
-### Install PlantUML
-
-> - https://plantuml.com/download
->   - Intellij Plugin: https://plugins.jetbrains.com/plugin/7017-plantuml-integration
->   - Eclipse Plugin: https://plantuml.com/eclipse
->   - Live Editor > https://github.com/plantuml/plantuml-server
-> 
-> Dependency of PlantUML: https://graphviz.org/download/
----
-### Basics of PlantUML component diagrams
-
-- Start with a @startuml notation and ends with @enduml notation
-- Define the components and link them
-
- ```text
- [Some Source] <<..com.example.archunitspring.presentation.endpoints.TicketEndpoint..>> 
-[Some Target] <<..com.example.archunitspring.application.interfaces.TicketService..>> as target
-
-[Some Source] --> target
- ```
-
----
-### Basics of PlantUML component diagrams
-
-This shows something like:
-```plantuml
-@startuml
-[Ticket Endpoint] <<..com.example.archunitspring.presentation.endpoints.TicketEndpoint..>> 
-[Ticket Service] <<..com.example.archunitspring.application.interfaces.TicketService..>> as target
-
-[Ticket Endpoint] --> target
-@enduml
-```
----
-### PlantUML Component Diagram visual
-
-[<img src="img/basic_plantuml.png"/>](image.png)
-
----
-### Basics of PlantUML component diagram
-
-> - Through the adhereToPlantUmlDiagram(..) method there would be a violation reported when target is accessing the source 
-> - Import puml file
-> - puml file is in similar resource folder
->   - e.g. Your test is situated at: 
->     - src/test/java/com/example/archunitspring/archtest
->   - So you puml file need to be at: 
->     - src/test/resources/com/example/archunitspring/archtest
----
-
 ## Best practices + Community
 
 - Create an artifact of the architectural tests for easy maintenance
 - Get connected in the wide community of ArchUnit/PlantUML
 
 ---
-## Part 1: Basic project setup
-
-> First start with checking our example project
-
-Dockerfile phases:
-- Maven build + test
-- Start application
-
-> Task: Add ArchUnit to the project 
-
-[Go to project setup](/slides/projectsetup/index.md)
-
-Note:
-Use the Docker environment for the Dockerfile(s) in the projects
-
----
-
-## Part 2: Basic rules
+## Extra: Basic rules
 
 The basic rules apply on simple cases with low complexity
 
@@ -764,7 +686,7 @@ Note:
 Check for the right usage of packages
 ---
 
-## Part 3: Intermediate rules
+## Extra: Intermediate rules
 
 Check on patterns and antipatterns
 
@@ -775,24 +697,14 @@ The intermediate rules are for checking on patterns and anti-patterns
 
 ---
 
-## Part 4: Integrate in build process
+## Extra: Integrate in build process
 
 * Freeze
 * Violations
 
 [Go to CI/CD](/slides/cicd/index.md)
 
-Note: Old concurrency the thread was a wrapper around an OS thread. The loom variant has taken control towards inside the JVM.
-
 ---
 
-## Part 5: Advanced rules
-
-- Use of PlantUML file
-
-[Go to advanced rules](/slides/advancedrules/index.md)
-
----
-
-# The End.
-## Questions?
+# The Real End.
+## Questions? Send me an email or connect on LinkedIn
