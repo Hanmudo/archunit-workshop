@@ -86,6 +86,8 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 > This can be a simple dependency, a design pattern or anti-pattern.
 
+> Same as JUnit, but for architecture 
+
 ---
 
 ## How does ArchUnit work behind the scenes?
@@ -109,12 +111,21 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 ---
 
-## Part 1: Project Setup
+## Part 1: Project Start
 
-- Clone GitLab repository with your IDE
+- Clone GitLab repository
   - Workshop Presentation: <a href="https://github.com/Hanmudo/archunit-workshop" target="_blank">https://github.com/Hanmudo/archunit-workshop</a>
-  - Example Project: <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
     
+- Run the presentation > see README.md
+- Open the presentation in your browser
+
+---
+
+## Project Setup 
+
+- Clone GitLab repository
+    - Example Project: <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
+
 - Check if IDE is correctly configured
 - Run application
 
@@ -123,7 +134,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 ## Run project
 
 > Three options:
-> 1. Run the application with the IDE
+> 1. **Run the application with the IDE**
 > 2. Run the mvn package docker:build docker:start command with a local maven installation
 > 3. Run the Dockerfile with a build stage before starting the jar > ./buildAndStart.sh
 
@@ -160,7 +171,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 ## Example Project
 The sample project we're using for the workshop is based on a Spring Boot API.
 
-The API receives a call to get a ticket object concerning a plane or train.
+The purpose of the API is to receive a call to get a ticket object concerning a plane or train.
 
 ---
 
