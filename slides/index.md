@@ -134,6 +134,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 - Clone GitLab repository
     - Example Project: <a href="https://github.com/Hanmudo/archunit-spring" target="_blank">https://github.com/Hanmudo/archunit-spring</a>
+    - Use the basicrules branch
 
 - Check if IDE is correctly configured
 - Run application
