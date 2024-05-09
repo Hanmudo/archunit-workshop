@@ -183,7 +183,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 ## Example Project
 The sample project we're using for the workshop is based on a Spring Boot API.
 
-The purpose of the API is to receive a call to get a ticket object concerning a plane or train.
+The purpose of the API is to receive a call to get ticket data concerning a plane or train.
 
 ---
 
