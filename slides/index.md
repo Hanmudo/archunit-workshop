@@ -79,6 +79,17 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 > JUnit4/5 compatible tests
 
 ---
+### What is PlantUML about
+
+>- PlantUML is to create UML diagrams from code
+>- Component Diagram is used for ArchUnit tests
+>- Store the architecture near the code implementation
+---
+### Together they are a powerful combination
+
+[<img src="./_assets/img/plantuml_archunit.png" width="300"/>](image.png)
+
+---
 
 ## What does ArchUnit do?
 
@@ -113,10 +124,8 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 ## Part 1: Project Start
 
-- Clone GitLab repository
-  - Workshop Presentation: <a href="https://github.com/Hanmudo/archunit-workshop" target="_blank">https://github.com/Hanmudo/archunit-workshop</a>
-    
-- Run the presentation > see README.md
+- Workshop Presentation: <a href="https://hanmudo.github.io/archunit-workshop/" target="_blank">https://hanmudo.github.io/archunit-workshop/</a>
+
 - Open the presentation in your browser
 
 ---
@@ -133,7 +142,9 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 ## Run project
 
-> Three options:
+> Three options to run the project:
+> 
+> I recommend to use the IDE
 > 1. **Run the application with the IDE**
 > 2. Run the mvn package docker:build docker:start command with a local maven installation
 > 3. Run the Dockerfile with a build stage before starting the jar > ./buildAndStart.sh

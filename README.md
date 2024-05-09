@@ -1,7 +1,9 @@
 # archunit-workshop
 Home of the ArchUnit Workshop
 
-Usage of the presentation see: https://github.com/webpro/reveal-md#docker .
+Follow the link to the [presentation](https://hanmudo.github.io/archunit-workshop/).
+
+Usage of the presentation locally see: https://github.com/webpro/reveal-md#docker .
 
 ## Docker
 
