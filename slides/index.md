@@ -149,14 +149,6 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 > 2. Run the mvn package docker:build docker:start command with a local maven installation
 > 3. Run the Dockerfile with a build stage before starting the jar > ./buildAndStart.sh
 
----
-
-### Install PlantUML
-
->- Download PlantUML and start it or use docker
-   >   - https://github.com/plantuml/plantuml-server
-   >   - `docker run -d -p 8080:8080 plantuml/plantuml-server:jetty`
->- More on the next slide >>
 
 ---
 ### Install PlantUML extensions/plugins
@@ -165,6 +157,14 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
     >   - Intellij Plugin: https://plugins.jetbrains.com/plugin/7017-plantuml-integration
     >   - Eclipse Plugin: https://plantuml.com/eclipse
 >   - Live Editor > https://github.com/plantuml/plantuml-server
+---
+
+### (Optional) Install PlantUML
+
+>- Download PlantUML and start it or use docker
+   >   - https://github.com/plantuml/plantuml-server
+>   - `docker run -d -p 8080:8080 plantuml/plantuml-server:jetty`
+
 
 ---
 
