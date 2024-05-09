@@ -23,6 +23,11 @@ jobs:
       - name: Build
         run: /app/bin/reveal-md.js ${{github.workspace}}/slides --static /tmp/artifacts/presentation/
 
+      - name: Copy images
+        run: |
+          ls -la /tmp/artifacts/presentation/
+          cp -r ${{github.workspace}}/slides/img /tmp/artifacts/presentation/_assets/
+
       - name: Install upload-pages-artifact dependency
         run: apk add tar
 

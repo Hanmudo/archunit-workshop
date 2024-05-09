@@ -6,7 +6,7 @@ revealOptions:
 
 Mini-lab: Test Driven Architecture accompanied with Architecture as Code
 
-<img src="img/ArchUnit-Logo.png">
+<img src="./_assets/img/ArchUnit-Logo.png">
 
 By: Ricky van Rijn
 
@@ -21,16 +21,16 @@ By: Ricky van Rijn
 </div>
 
 <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="img/profileRicky.jpg" width="200"/>
+    <img src="./_assets/img/profileRicky.jpg" width="200"/>
 </div>
 
 <div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="img/github.svg" width="32"/> 
+        <img src="./_assets/img/github.svg" width="32"/> 
         : @Hanmudo
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="img/x.svg" width="32"/>
+        <img src="./_assets/img/x.svg" width="32"/>
         : @RickyvanRijn
     </div>
 </div>
@@ -72,7 +72,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 ### What is ArchUnit about?
 
-[<img src="img/ArchUnit-Logo.png" width="300"/>](image.png)
+[<img src="./_assets/img/ArchUnit-Logo.png" width="300"/>](image.png)
 
 > Plain Java tests
 
@@ -165,7 +165,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 ---
 ### Working PlantUML extension
-[<img src="img/plantuml_working.png" width="900"/>](image.png)
+[<img src="./_assets/img/plantuml_working.png" width="900"/>](image.png)
 ---
 
 ## Example Project
@@ -244,7 +244,7 @@ public void services_should_be_prefixed() {
 > 
 ---
 ### Test class example
-[<img src="img/PackageDependencyRulesTest.png" width="500"/>](image.png)
+[<img src="./_assets/img/PackageDependencyRulesTest.png" width="500"/>](image.png)
 
 ---
 ### Test class example
@@ -397,7 +397,7 @@ public void ticketservice_classes_should_implement_interfaces() {
 
 ### Folder screenshot
 
-[<img src="img/InheritanceRulesTest.png" width="500"/>](image.png)
+[<img src="./_assets/img/InheritanceRulesTest.png" width="500"/>](image.png)
 
 ---
 
@@ -420,7 +420,7 @@ public void basic_layered_architecture_is_enforced() {
 >- But there's more!
 ---
 ### What do you see?
-[<img src="img/LayeredArchitectureTest.png" width="950"/>](image.png)
+[<img src="./_assets/img/LayeredArchitectureTest.png" width="950"/>](image.png)
 
 ---
 ### All classes are imported
@@ -452,7 +452,7 @@ public class LayeredArchitectureRulesTest {
 ```
 ---
 ### What do you see?
-[<img src="img/LayeredArchitectureTest2.png" width="950"/>](image.png)
+[<img src="./_assets/img/LayeredArchitectureTest2.png" width="950"/>](image.png)
 
 ---
 ### The test still fails!
@@ -537,10 +537,10 @@ public void domainClassesShouldNotDependOnEachOther() {
 >- The filename of the uml can be customized
 ---
 ### Example
-[<img src="img/PlantUMLLocation.png" width="950"/>](image.png)
+[<img src="./_assets/img/PlantUMLLocation.png" width="950"/>](image.png)
 ---
 ### PlantUML Component Diagram visual
-[<img src="img/basic_plantuml.png" width="950"/>](image.png)
+[<img src="./_assets/img/basic_plantuml.png" width="950"/>](image.png)
 ---
 ### Create the PlantUML test
 >- Create a test class 'PlantUmlRulesTest' in the arch folder
@@ -572,7 +572,7 @@ planeticketservice -> ticketservice : implements
 
 ---
 ### Visual PlantUML diagram
-[<img src="img/morebasic.png" width="950"/>](image.png)
+[<img src="./_assets/img/morebasic.png" width="950"/>](image.png)
 
 ---
 ### Ready to build functionality!
