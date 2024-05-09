@@ -1,7 +1,7 @@
 # archunit-workshop
 Home of the ArchUnit Workshop
 
-Follow the link to the [presentation](https://hanmudo.github.io/archunit-workshop/).
+Follow the link to the presentation [here](https://hanmudo.github.io/archunit-workshop/).
 
 Usage of the presentation locally see: https://github.com/webpro/reveal-md#docker .
 

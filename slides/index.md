@@ -97,7 +97,7 @@ Hobby's: Taekwondo, Hapkido, Fitness, Robotics
 
 > This can be a simple dependency, a design pattern or anti-pattern.
 
-> Same as JUnit, but for architecture 
+> Unit testing but for architecture 
 
 ---
 
