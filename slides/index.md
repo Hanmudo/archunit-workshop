@@ -553,6 +553,12 @@ public void domainClassesShouldNotDependOnEachOther() {
 ### PlantUML Component Diagram visual
 [<img src="./_assets/img/basic_plantuml.png" width="950"/>](image.png)
 ---
+### PlantUML tips
+>- the --> and -> are arrow notations
+>- double dashes are vertically oriented
+>- single dashes are horizontally oriented
+>- Add [component] as footer forces a component diagram
+---
 ### Create the PlantUML test
 >- Create a test class 'PlantUmlRulesTest' in the arch folder
 >- Create an ArchTest 'classes_should_adhere_to_diagram' in the test class
